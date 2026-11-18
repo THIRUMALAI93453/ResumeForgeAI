@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --color-ink: #16130f;
+  --color-paper: #f6f2ea;
+  --color-card: #fffdf8;
+  --color-line: #e3dccd;
+  --color-muted: #6f675a;
+  --color-ember: #e8590c;
+  --color-ember-dark: #c2410c;
+  --color-good: #2f7d4f;
+  --color-warn: #b7791f;
+  --color-bad: #c53030;
+}
+
+html { background: var(--color-paper); color: var(--color-ink); }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+
+.grain {
+  background-image: radial-gradient(rgba(22, 19, 15, 0.06) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition
+    disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary { @apply btn bg-ink text-paper hover:bg-ember; }
+@utility btn-ghost { @apply btn border border-line bg-card hover:border-ink; }
+@utility input {
+  @apply w-full rounded-lg border border-line bg-card px-3.5 py-2.5 text-sm outline-none transition
+    placeholder:text-muted/70 focus:border-ink focus:ring-2 focus:ring-ember/20;
+}
+@utility card { @apply rounded-2xl border border-line bg-card; }
+@utility label { @apply mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-muted; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@media print {
+  .no-print { display: none !important; }
+  html, body { background: white; }
+  .card { break-inside: avoid; border-color: #ddd; }
+}
