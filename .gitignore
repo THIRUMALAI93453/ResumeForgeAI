@@ -17,3 +17,7 @@ dist/
 
 # Uploaded files
 uploads/
+
+# Netlify
+.netlify/
+!.netlify/results.md
